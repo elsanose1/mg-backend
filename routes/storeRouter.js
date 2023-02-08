@@ -3,7 +3,10 @@ const router = require("express").Router();
 const authController = require("../controllers/authController");
 const storeController = require("../controllers/storeController");
 
-router.route("/").post(storeController.createStore).get(storeController.getAll);
+router
+  .route("/")
+  .post(authController.protect, storeController.createStore)
+  .get(storeController.getAll);
 
 router
   .route("/:id")

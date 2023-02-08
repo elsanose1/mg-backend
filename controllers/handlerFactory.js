@@ -19,7 +19,7 @@ exports.updateOne = (Modle) =>
   catchAsync(async (req, res, next) => {
     const updatedItem = await Modle.findByIdAndUpdate(
       req.params.id,
-      { ...req.body, updatedBy: req.user.id },
+      { ...req.body, creator: this.creator, updatedBy: req.user.id },
       {
         new: true,
         runValidators: true,

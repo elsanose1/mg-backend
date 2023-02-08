@@ -10,11 +10,7 @@ router
 // router.use()
 router
   .route("/:id")
-  .patch(
-    authController.protect,
-    authController.restrictTo("admin"),
-    schoolController.updateSchool
-  )
+  .patch(authController.protect, schoolController.updateSchool)
   .get(schoolController.getOne)
   .delete(
     authController.protect,

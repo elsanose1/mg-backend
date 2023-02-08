@@ -18,19 +18,10 @@ const storeSchema = new mongoose.Schema(
       type: String,
       required: [true, "Store must have A google map link"],
     },
-    employees: [
-      {
-        name: {
-          type: String,
-          required: [true, "Employee must has name"],
-        },
-        role: String,
-        phone: {
-          type: String,
-          required: [true, "Employee must has phone number"],
-        },
-      },
-    ],
+    phone: {
+      type: Number,
+      required: [true, "Store must have A Phone"],
+    },
     city: {
       type: Object,
       required: [true, "Store must has an City"],
@@ -55,6 +46,7 @@ const storeSchema = new mongoose.Schema(
 storeSchema.pre(/^find/, function (next) {
   this.find({ isActive: { $ne: false } });
   this.populate("creator", "name");
+  this.populate("updatedBy", "name");
   next();
 });
 

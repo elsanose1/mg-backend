@@ -59,6 +59,8 @@ const schoolSchema = new mongoose.Schema(
 
 schoolSchema.pre(/^find/, function (next) {
   this.find({ isActive: { $ne: false } });
+  this.populate("updatedBy", "name");
+
   next();
 });
 
