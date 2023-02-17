@@ -19,7 +19,7 @@ const storeSchema = new mongoose.Schema(
       required: [true, "Store must have A google map link"],
     },
     phone: {
-      type: Number,
+      type: String,
       required: [true, "Store must have A Phone"],
     },
     city: {
