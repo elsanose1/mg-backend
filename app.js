@@ -18,20 +18,12 @@ const clientRouter = require("./routes/clientRouter");
 
 const app = express();
 
-// Golbal Midlleware
-app.set("view engine", "pug");
-app.set("views", path.join(__dirname, "views"));
-
-// serving static files
-
-app.use(express.static(path.join(__dirname, "public")));
-
 // security HTTP headders
 app.use(
   helemt({
     crossOriginEmbedderPolicy: false,
     crossOriginResourcePolicy: {
-      allowOrigins: ["*"],
+      allowOrigins: ["https://mg-stationery.netlify.app/"],
     },
     contentSecurityPolicy: {
       directives: {
@@ -42,7 +34,11 @@ app.use(
   })
 );
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://mg-stationery.netlify.app",
+  })
+);
 
 if (process.env.NODE_ENV == "development") {
   app.use(morgan("dev"));
