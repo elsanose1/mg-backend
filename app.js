@@ -36,7 +36,7 @@ app.use(
 
 app.use(
   cors({
-    origin: "https://mg-stationery.netlify.app",
+    origin: ["https://mg-stationery.netlify.app", "http://localhost:3000"],
   })
 );
 
