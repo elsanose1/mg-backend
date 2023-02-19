@@ -22,6 +22,9 @@ const storeSchema = new mongoose.Schema(
       type: String,
       required: [true, "Store must have A Phone"],
     },
+    img: {
+      type: String,
+    },
     city: {
       type: Object,
       required: [true, "Store must has an City"],
