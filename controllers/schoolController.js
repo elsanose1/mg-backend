@@ -47,3 +47,18 @@ exports.getAll = catchAsync(async (req, res, next) => {
     },
   });
 });
+
+exports.getNames = catchAsync(async (rea, res, next) => {
+  const schools = await School.find().select("title -updatedBy city");
+
+  if (!schools) {
+    return next(new AppError("No Documents found", 404));
+  }
+  res.status(200).json({
+    status: "success",
+    results: schools.length,
+    data: {
+      schools,
+    },
+  });
+});

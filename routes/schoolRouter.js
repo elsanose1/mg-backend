@@ -2,20 +2,19 @@ const router = require("express").Router();
 const authController = require("../controllers/authController");
 const schoolController = require("../controllers/schoolController");
 
+router.get("/onlynames", schoolController.getNames);
+
+router.use(authController.protect);
 router
   .route("/")
-  .post(authController.protect, schoolController.createSchool)
-  .get(authController.protect, schoolController.getAll);
+  .post(schoolController.createSchool)
+  .get(schoolController.getAll);
 
 // router.use()
 router
   .route("/:id")
-  .patch(authController.protect, schoolController.updateSchool)
+  .patch(schoolController.updateSchool)
   .get(schoolController.getOne)
-  .delete(
-    authController.protect,
-    authController.restrictTo("admin"),
-    schoolController.deleteSchool
-  );
+  .delete(authController.restrictTo("admin"), schoolController.deleteSchool);
 
 module.exports = router;
