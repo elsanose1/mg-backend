@@ -12,6 +12,10 @@ router
   .route("/:id")
   .patch(authController.protect, storeController.updateStore)
   .get(storeController.getOne)
-  .delete(authController.restrictTo("admin"), storeController.deleteStore);
+  .delete(
+    authController.protect,
+    authController.restrictTo("admin"),
+    storeController.deleteStore
+  );
 
 module.exports = router;

@@ -5,12 +5,12 @@ const schoolController = require("../controllers/schoolController");
 router.get("/onlynames", schoolController.getNames);
 
 router.use(authController.protect);
+
 router
   .route("/")
   .post(schoolController.createSchool)
   .get(schoolController.getAll);
 
-// router.use()
 router
   .route("/:id")
   .patch(schoolController.updateSchool)

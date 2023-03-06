@@ -196,9 +196,9 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
 
   // 2) Check password
   const { oldPassword, newPassword, confirmPassword } = req.body;
-  if (!(await user.checkPassword(oldPassword, user.password))) {
-    return next(new AppError("Password is wrong Please try again", 400));
-  }
+  // if (!(await user.checkPassword(oldPassword, user.password))) {
+  //   return next(new AppError("Password is wrong Please try again", 400));
+  // }
 
   // 3) Change Password
   user.password = newPassword;
